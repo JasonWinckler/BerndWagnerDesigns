@@ -18,7 +18,18 @@ Danach `http://localhost:4173/` öffnen.
 - `css/styles.css` – Designsystem, Responsive Layout, Fokus- und Reduced-Motion-Regeln
 - `js/config.js` – zentrale Produkt-, Kontakt- und Formular-Konfiguration
 - `js/app.js` – Navigation, Carousel, Filter, Formularadapter und E-Mail-Fallback
-- `assets/` – Logos und Designvisualisierungen
+- `assets/` – Logos und ursprüngliche Designvisualisierungen
+- `upload/handtaschen/` – drei austauschbare Handtaschen-Motive, die direkt von der Website genutzt werden
+- `upload/hosen/` – drei austauschbare Hosen-Motive, die direkt von der Website genutzt werden
+
+## Bilder austauschen
+
+Die Galerie nutzt die Dateien aus `upload/handtaschen/` und `upload/hosen/`. Pro Kategorie sind drei Motive vorgesehen. Neue Bilder können direkt in diese Ordner hochgeladen werden, solange die bestehenden Dateinamen beibehalten werden:
+
+- `upload/handtaschen/handtasche-01.svg` bis `handtasche-03.svg`
+- `upload/hosen/hose-01.svg` bis `hose-03.svg`
+
+Wenn andere Dateiendungen verwendet werden, müssen die Bildpfade in `js/config.js` und das Hero-Bild in `index.html` entsprechend angepasst werden. Alle Motive werden auf der Website als „Designvisualisierung“ und „Auf Anfrage“ gekennzeichnet.
 
 ## Formular-Konfiguration vor Livegang
 

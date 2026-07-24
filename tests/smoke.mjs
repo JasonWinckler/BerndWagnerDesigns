@@ -36,7 +36,7 @@ for (const product of products) {
   assert(product.isConcept === true, `${product.id} must be marked as design visualization`);
 }
 
-assert(index.includes('Entworfen für genau eine Person.'), 'hero headline is missing');
+assert(index.includes('Entworfen, nur für Sie.'), 'hero headline is missing');
 assert(index.includes('data-carousel'), 'gallery carousel is missing');
 assert(app.includes('6000'), 'carousel interval must be 6,000 ms');
 assert(app.includes('prefers-reduced-motion: reduce'), 'reduced motion handling is missing');
