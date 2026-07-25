@@ -24,5 +24,5 @@ const welcomePopup = document.querySelector('[data-welcome-popup]');
 if (welcomePopup) {
   window.setTimeout(() => {
     welcomePopup.hidden = true;
-  }, 4300);
+  }, 5200);
 }
