@@ -1,12 +1,11 @@
-# Upload-Bilder
+# Bannerbilder der Landingpage
 
-Die Website nutzt die vorhandenen Handtaschen-PNGs und erwartet die Hosen-PNGs unter diesen vorkonfigurierten Pfaden:
+In diesem Ordner können die beiden Bilder für die diagonale Kollektionsauswahl ausgetauscht werden.
+Die Dateinamen müssen **exakt** beibehalten werden:
 
-- `handtaschen/58134.png`
-- `handtaschen/58135.png`
-- `handtaschen/58136.png`
-- `hosen/58131.png`
-- `hosen/58132.png`
-- `hosen/58133.png`
+| Datei | Zuordnung | Empfohlenes Format |
+| --- | --- | --- |
+| `BannerLinks.png` | Linkes, diagonales Feld – **Luxurious Collection** | Hochauflösendes Hochformat, mindestens 1600 × 2000 px |
+| `BannerRechts.png` | Rechtes, diagonales Feld – **Streetwear Collection** | Hochauflösendes Hochformat, mindestens 1600 × 2000 px |
 
-Die drei Hosenbilder werden separat und manuell hinzugefügt. Neue PNGs werden nicht automatisch eingebunden: Ihre exakten relativen Pfade müssen in `js/config.js` ergänzt werden; bei einem neuen Hero-Motiv ist zusätzlich `index.html` anzupassen.
+Die Bilder werden über `background-size: cover` eingebettet. Wichtige Motive sollten deshalb nicht direkt am Rand liegen. Nach dem Upload ist keine Änderung an HTML oder CSS nötig. Solange eine Datei noch nicht vorhanden ist, zeigt die Seite automatisch die hinterlegte dunkle Hintergrundfarbe.
