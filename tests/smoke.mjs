@@ -25,11 +25,12 @@ const landingApp = await readFile(join(root, 'js/app.js'), 'utf8');
 const landingStyles = await readFile(join(root, 'css/styles.css'), 'utf8');
 assert(landing.includes('href="luxury/"'), 'landing page must link to luxury');
 assert(landing.includes('href="streetwear/"'), 'landing page must link to streetwear');
-assert(landing.includes('<strong>Luxurious Collection</strong>'), 'luxury choice is missing');
-assert(landing.includes('<strong>Streetwear Collection</strong>'), 'streetwear choice is missing');
+assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is missing');
+assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
 assert(landing.includes('class="welcome-overlay"'), 'welcome text overlay is missing');
+assert(landingStyles.includes('aspect-ratio:1672/941'), 'landing banner cards must preserve the supplied image ratio');
 assert(landingStyles.includes('prefers-reduced-motion:reduce'), 'landing interaction must honor reduced motion');
 
 assert(luxuryProducts.length === 6, 'luxury must retain all six configured designs');
