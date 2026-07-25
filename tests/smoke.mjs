@@ -26,14 +26,24 @@ for (const page of pages) {
 const index = await readFile(join(root, 'index.html'), 'utf8');
 const app = await readFile(join(root, 'js/app.js'), 'utf8');
 
-assert(products.length === 6, 'exactly six product designs must be configured');
-assert(products.filter((product) => product.category === 'Handtasche').length === 3, 'three handbags must be configured');
-assert(products.filter((product) => product.category === 'Bespoke-Hose').length === 3, 'three bespoke trousers must be configured');
+const expectedUploads = new Map([
+  ['upload/handtaschen/58134.png', 'Handtaschen'],
+  ['upload/handtaschen/58135.png', 'Handtaschen'],
+  ['upload/handtaschen/58136.png', 'Handtaschen']
+]);
+
+assert(products.length === expectedUploads.size, 'every available PNG must be configured exactly once');
+assert(new Set(products.map((product) => product.image)).size === products.length, 'configured image paths must be unique');
 
 for (const product of products) {
   assert(existsSync(join(root, product.image)), `${product.id} references missing image ${product.image}`);
+  assert(expectedUploads.get(product.image) === product.category, `${product.image} is assigned to the wrong category`);
   assert(product.status === 'Auf Anfrage', `${product.id} must be marked as on request`);
   assert(product.isConcept === true, `${product.id} must be marked as design visualization`);
+}
+
+for (const image of expectedUploads.keys()) {
+  assert(products.some((product) => product.image === image), `${image} is not configured`);
 }
 
 assert(index.includes('Entworfen, nur für Sie.'), 'hero headline is missing');
