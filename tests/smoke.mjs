@@ -29,12 +29,16 @@ assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is mis
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
-assert(landingStyles.includes('clip-path:polygon(0 0,62% 0,49% 100%,0 100%)'), 'luxury banner must use the measured shared diagonal');
-assert(landingStyles.includes('clip-path:polygon(62% 0,100% 0,100% 100%,49% 100%)'), 'streetwear banner must use the measured shared diagonal');
-assert(landingStyles.includes('.choice-luxury:before{background-position:left 5vw top;background-size:90% 100%}'), 'luxury artwork must retain its measured uncropped fit');
-assert(landingStyles.includes('.choice-street:before{background-position:left 15.3vw top;background-size:81% 100%}'), 'streetwear artwork must retain its uncropped fitted size');
+assert(landing.includes('Willkommen in der exklusiven Welt'), 'exclusive welcome message is missing');
+assert(landing.includes('src="upload/BannerLinks.png"'), 'luxury banner image is missing');
+assert(landing.includes('src="upload/BannerRechts.png"'), 'streetwear banner image is missing');
+assert(landingStyles.includes('aspect-ratio:1672/941'), 'banner must retain the master artwork ratio');
+assert(landingStyles.includes('object-fit:fill'), 'banner halves must share the exact stage geometry');
+assert(landingStyles.includes('clip-path:polygon(0 0,56.65% 0,41.3% 100%,0 100%)'), 'luxury banner must use the transparent artwork diagonal');
+assert(landingStyles.includes('clip-path:polygon(56.65% 0,100% 0,100% 100%,41.3% 100%)'), 'streetwear banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('border:1px solid rgba(197,154,94,.65)'), 'landing banner must retain its gold frame');
-assert(landingStyles.includes('clip-path:polygon(61.8% 0,62.2% 0,49.2% 100%,48.8% 100%)'), 'gold divider must cover the measured image join');
+assert(landingStyles.includes('@keyframes choice-shine'), 'banner hover highlight animation is missing');
+assert(landingStyles.includes('.landing-header{position:relative'), 'landing navigation must remain outside the banner flow');
 assert(landingStyles.includes('prefers-reduced-motion:reduce'), 'landing interaction must honor reduced motion');
 
 assert(luxuryProducts.length === 6, 'luxury must retain all six configured designs');
