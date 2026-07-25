@@ -29,8 +29,8 @@ assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is mis
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
-assert(landing.includes('class="welcome-overlay"'), 'welcome text overlay is missing');
-assert(landingStyles.includes('aspect-ratio:1672/941'), 'landing banner cards must preserve the supplied image ratio');
+assert(landingStyles.includes('clip-path:polygon(0 0,62% 0,47% 100%,0 100%)'), 'luxury banner must use the shared diagonal');
+assert(landingStyles.includes('clip-path:polygon(62% 0,100% 0,100% 100%,47% 100%)'), 'streetwear banner must use the shared diagonal');
 assert(landingStyles.includes('prefers-reduced-motion:reduce'), 'landing interaction must honor reduced motion');
 
 assert(luxuryProducts.length === 6, 'luxury must retain all six configured designs');
