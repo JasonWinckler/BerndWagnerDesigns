@@ -29,11 +29,13 @@ assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is mis
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
-assert(landing.includes('<span>Willkommen bei</span> Bernd Wagner Designs'), 'structured welcome message is missing');
+assert(landing.includes('class="welcome-popup"'), 'welcome message must be presented as a popup');
+assert(landing.includes('<main id="collections">\n    <section class="collection-choice"'), 'welcome message must not occupy space above the banner');
 assert(landing.includes('src="upload/BannerLinks.png"'), 'luxury banner image is missing');
 assert(landing.includes('src="upload/BannerRechts.png"'), 'streetwear banner image is missing');
-assert(landingStyles.includes('aspect-ratio:1672/941'), 'banner must retain the master artwork ratio');
-assert(landingStyles.includes('object-fit:fill'), 'banner halves must share the exact stage geometry');
+assert(landingStyles.includes('height:100svh'), 'banner must fill the viewport height');
+assert(landingStyles.includes('object-fit:cover'), 'banner artwork must preserve its proportions');
+assert(landingStyles.includes('animation:welcome-fade .8s ease 3s forwards'), 'welcome popup must fade after three seconds');
 assert(landingStyles.includes('clip-path:polygon(0 0,56.65% 0,41.3% 100%,0 100%)'), 'luxury banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('clip-path:polygon(56.65% 0,100% 0,100% 100%,41.3% 100%)'), 'streetwear banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('border:1px solid rgba(197,154,94,.65)'), 'landing banner must retain its gold frame');
