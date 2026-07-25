@@ -45,7 +45,7 @@ assert(landingStyles.includes('transform: scale(1.025)'), 'banner hover zoom is 
 assert(!landing.includes('<header'), 'landing header must remain removed');
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) assert(landingStyles.includes(`html[data-layout="${profile}"]`), `${profile} layout styles are missing`);
 assert(landingApp.includes("height > width"), 'portrait viewports must select mobile');
-assert(landingApp.includes('4300'), 'welcome popup must be removed after its four-second fade');
+assert(landingApp.includes('5200'), 'welcome popup must be removed after its exclusive welcome sequence');
 assert(landingStyles.includes('prefers-reduced-motion: reduce'), 'landing interaction must honor reduced motion');
 
 assert(luxuryProducts.length === 6, 'luxury must retain all six configured designs');
@@ -56,5 +56,18 @@ assert(streetwearProducts.length > 0, 'streetwear should retain the collection s
 assert(streetwearProducts.every(({ image, pendingUpload }) => !image && pendingUpload), 'streetwear designs must have no image uploads yet');
 const streetwearFiles = ['streetwear/upload/hosen'];
 for (const directory of streetwearFiles) assert(existsSync(join(root, directory)), `${directory} is missing`);
+
+for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
+  for (const collection of ['luxury', 'streetwear']) {
+    const edition = join(profile, collection);
+    assert(existsSync(join(root, edition, 'index.html')), `${edition} device edition is missing`);
+    assert(existsSync(join(root, edition, 'css/styles.css')), `${edition} responsive styles are missing`);
+    assert(existsSync(join(root, edition, 'js/app.js')), `${edition} interactions are missing`);
+    assert(existsSync(join(root, edition, 'upload/README.md')), `${edition} upload instructions are missing`);
+  }
+  const profileLanding = await readFile(join(root, profile, 'index.html'), 'utf8');
+  assert(profileLanding.includes('href="luxury/"'), `${profile} landing must open its local luxury edition`);
+  assert(profileLanding.includes('href="streetwear/"'), `${profile} landing must open its local streetwear edition`);
+}
 
 console.log(`Static smoke checks passed for ${pages.length} pages, ${luxuryProducts.length} luxury designs and ${streetwearProducts.length} streetwear placeholders.`);
