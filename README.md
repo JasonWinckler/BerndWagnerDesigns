@@ -24,13 +24,16 @@ Danach `http://localhost:4173/` öffnen.
 
 ## Bilder austauschen
 
-Die Galerie nutzt die tatsächlich vorhandenen PNG-Dateien aus `upload/handtaschen/` und `upload/hosen/`. Aktuell sind diese Motive konfiguriert:
+Die Galerie nutzt die vorhandenen Handtaschen-PNGs. Die drei Hosen-Pfade sind bereits für die spätere manuelle Ablage vorkonfiguriert:
 
 - `upload/handtaschen/58134.png`
 - `upload/handtaschen/58135.png`
 - `upload/handtaschen/58136.png`
+- `upload/hosen/58131.png`
+- `upload/hosen/58132.png`
+- `upload/hosen/58133.png`
 
-Weitere PNGs müssen mit ihrem exakten Dateinamen in `js/config.js` eingetragen werden. Ein Handtaschenmotiv wird außerdem direkt als Hero-Bild in `index.html` referenziert. Alle Motive werden auf der Website als „Designvisualisierung“ und „Auf Anfrage“ gekennzeichnet.
+Die Hosenbilder selbst sind nicht Bestandteil des Repositorys und müssen unter den genannten Pfaden ergänzt werden. Weitere PNGs müssen mit ihrem exakten Dateinamen in `js/config.js` eingetragen werden. Ein Handtaschenmotiv wird außerdem direkt als Hero-Bild in `index.html` referenziert. Alle Motive werden auf der Website als „Designvisualisierung“ und „Auf Anfrage“ gekennzeichnet.
 
 ## Formular-Konfiguration vor Livegang
 
