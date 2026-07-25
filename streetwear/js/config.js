@@ -10,5 +10,5 @@ export const siteConfig = {
 export const products = [
   { id:'street-bag', category:'Accessoires', name:'Streetwear Rucksack', alt:'Streetwear-Rucksack von Bernd Wagner Designs', image:'../upload/streetwear/bags/StreetWear_Bag.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
   { id:'street-shirt', category:'Oberteile', name:'Streetwear Hemd', alt:'Streetwear-Hemd von Bernd Wagner Designs', image:'../upload/streetwear/oberteile/StreetWear_Shirt.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
-  { id:'street-cap', category:'Accessoires', name:'Streetwear Cap', alt:'Streetwear-Cap von Bernd Wagner Designs', image:'../upload/streetwear/StreetWear_Cap.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true }
+  { id:'street-cap', category:'Accessoires', name:'Streetwear Cap', alt:'Streetwear-Cap von Bernd Wagner Designs', image:'../upload/streetwear/caps/StreetWear_Cap.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true }
 ];

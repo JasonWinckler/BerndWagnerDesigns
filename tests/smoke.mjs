@@ -58,7 +58,7 @@ assert(
   JSON.stringify(streetwearProducts.map(({ name, image }) => [name, image])) === JSON.stringify([
     ['Streetwear Rucksack', '../upload/streetwear/bags/StreetWear_Bag.png'],
     ['Streetwear Hemd', '../upload/streetwear/oberteile/StreetWear_Shirt.png'],
-    ['Streetwear Cap', '../upload/streetwear/StreetWear_Cap.png']
+    ['Streetwear Cap', '../upload/streetwear/caps/StreetWear_Cap.png']
   ]),
   'streetwear products must reference the documented upload filenames'
 );
@@ -68,6 +68,7 @@ for (const collection of ['luxury', 'streetwear']) {
 }
 assert(existsSync(join(root, 'upload', 'streetwear', 'oberteile', 'README.md')), 'streetwear tops upload instructions are missing');
 assert(existsSync(join(root, 'upload', 'streetwear', 'bags', 'README.md')), 'streetwear bags upload instructions are missing');
+assert(existsSync(join(root, 'upload', 'streetwear', 'caps', 'README.md')), 'streetwear caps upload instructions are missing');
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
   for (const collection of ['luxury', 'streetwear']) {
