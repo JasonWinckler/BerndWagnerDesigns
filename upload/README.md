@@ -1,5 +1,10 @@
 # Bannerbilder der Startseite
 
+Neben den Startseitenbildern enthält dieses zentrale Upload-Verzeichnis die
+Kollektion-Ordner `luxury/` und `streetwear/`. Sämtliche Geräteversionen greifen
+auf diese gemeinsamen Ordner zu, sodass jedes Produktbild nur einmal hochgeladen
+werden muss.
+
 In diesen Ordner können die beiden austauschbaren Bannerbilder der Startseite hochgeladen werden:
 
 | Datei | Zuordnung |
