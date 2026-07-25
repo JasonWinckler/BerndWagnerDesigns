@@ -14,12 +14,6 @@ function detectLayout({ width, height }) {
 const layout = layoutOverride || detectLayout(viewport);
 document.documentElement.dataset.layout = layout;
 
-// Keep the automatically selected version visible in the URL without reloading
-// the shared landing page. Direct links to a version remain useful for previews.
-if (!layoutOverride && location.protocol !== 'file:') {
-  history.replaceState({ layout }, '', `/${layout}/${location.search}${location.hash}`);
-}
-
 const welcomePopup = document.querySelector('[data-welcome-popup]');
 if (welcomePopup) {
   window.setTimeout(() => {
