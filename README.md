@@ -19,21 +19,21 @@ Danach `http://localhost:4173/` öffnen.
 - `js/config.js` – zentrale Produkt-, Kontakt- und Formular-Konfiguration
 - `js/app.js` – Navigation, Carousel, Filter, Formularadapter und E-Mail-Fallback
 - `assets/` – Logos und ursprüngliche Designvisualisierungen
-- `upload/handtaschen/` – vorhandene Handtaschen-PNGs, die direkt von der Website genutzt werden
-- `upload/hosen/` – Upload-Verzeichnis für Hosen-PNGs
+- `upload/luxury/` – gemeinsamer Upload-Ordner aller Geräteversionen der Luxury-Kollektion
+- `upload/streetwear/` – gemeinsamer Upload-Ordner aller Geräteversionen der Streetwear-Kollektion
 
 ## Bilder austauschen
 
 Die Galerie nutzt die vorhandenen Handtaschen-PNGs. Die drei Hosen-Pfade sind bereits für die spätere manuelle Ablage vorkonfiguriert:
 
-- `upload/handtaschen/58134.png`
-- `upload/handtaschen/58135.png`
-- `upload/handtaschen/58136.png`
-- `upload/hosen/58131.png`
-- `upload/hosen/58132.png`
-- `upload/hosen/58133.png`
+- `upload/luxury/handtaschen/58134.png`
+- `upload/luxury/handtaschen/58135.png`
+- `upload/luxury/handtaschen/58136.png`
+- `upload/luxury/hosen/58131.png`
+- `upload/luxury/hosen/58132.png`
+- `upload/luxury/hosen/58133.png`
 
-Die Hosenbilder selbst sind nicht Bestandteil des Repositorys und müssen unter den genannten Pfaden ergänzt werden. Weitere PNGs müssen mit ihrem exakten Dateinamen in `js/config.js` eingetragen werden. Ein Handtaschenmotiv wird außerdem direkt als Hero-Bild in `index.html` referenziert. Alle Motive werden auf der Website als „Designvisualisierung“ und „Auf Anfrage“ gekennzeichnet.
+Alle Geräteversionen greifen auf diese Ordner im Hauptverzeichnis zu. Bilder müssen daher nur einmal unter `upload/luxury/` beziehungsweise `upload/streetwear/` abgelegt werden. Weitere PNGs müssen mit ihrem exakten Dateinamen in den jeweiligen `js/config.js`-Dateien eingetragen werden. Ein Handtaschenmotiv wird außerdem direkt als Hero-Bild in den Luxury-`index.html`-Dateien referenziert. Alle Motive werden auf der Website als „Designvisualisierung“ und „Auf Anfrage“ gekennzeichnet.
 
 ## Formular-Konfiguration vor Livegang
 

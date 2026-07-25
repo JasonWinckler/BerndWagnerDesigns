@@ -54,8 +54,10 @@ for (const product of luxuryProducts) assert(existsSync(join(root, 'luxury', pro
 
 assert(streetwearProducts.length > 0, 'streetwear should retain the collection structure');
 assert(streetwearProducts.every(({ image, pendingUpload }) => !image && pendingUpload), 'streetwear designs must have no image uploads yet');
-const streetwearFiles = ['streetwear/upload/hosen'];
-for (const directory of streetwearFiles) assert(existsSync(join(root, directory)), `${directory} is missing`);
+for (const collection of ['luxury', 'streetwear']) {
+  assert(existsSync(join(root, 'upload', collection, 'README.md')), `shared upload/${collection} directory is missing`);
+}
+assert(existsSync(join(root, 'upload', 'streetwear', 'hosen')), 'shared streetwear upload directory is missing');
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
   for (const collection of ['luxury', 'streetwear']) {
@@ -63,11 +65,19 @@ for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device'])
     assert(existsSync(join(root, edition, 'index.html')), `${edition} device edition is missing`);
     assert(existsSync(join(root, edition, 'css/styles.css')), `${edition} responsive styles are missing`);
     assert(existsSync(join(root, edition, 'js/app.js')), `${edition} interactions are missing`);
-    assert(existsSync(join(root, edition, 'upload/README.md')), `${edition} upload instructions are missing`);
+    assert(!existsSync(join(root, edition, 'upload')), `${edition} must not keep a duplicate upload directory`);
   }
   const profileLanding = await readFile(join(root, profile, 'index.html'), 'utf8');
   assert(profileLanding.includes('href="luxury/"'), `${profile} landing must open its local luxury edition`);
   assert(profileLanding.includes('href="streetwear/"'), `${profile} landing must open its local streetwear edition`);
+}
+
+for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
+  const { products } = await import(`../${profile}/luxury/js/config.js`);
+  for (const product of products) {
+    assert(product.image.startsWith('../../upload/luxury/'), `${profile} luxury must use the shared upload folder`);
+    assert(existsSync(join(root, profile, 'luxury', product.image)), `${profile} ${product.id} references a missing shared image`);
+  }
 }
 
 console.log(`Static smoke checks passed for ${pages.length} pages, ${luxuryProducts.length} luxury designs and ${streetwearProducts.length} streetwear placeholders.`);
