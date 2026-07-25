@@ -29,16 +29,21 @@ assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is mis
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
-assert(landing.includes('<span>Willkommen bei</span> Bernd Wagner Designs'), 'structured welcome message is missing');
+assert(landing.includes('class="welcome-popup"'), 'welcome message must be presented as a popup');
+assert(landing.includes('<main id="collections">\n    <section class="collection-choice"'), 'welcome message must not occupy space above the banner');
 assert(landing.includes('src="upload/BannerLinks.png"'), 'luxury banner image is missing');
 assert(landing.includes('src="upload/BannerRechts.png"'), 'streetwear banner image is missing');
-assert(landingStyles.includes('aspect-ratio:1672/941'), 'banner must retain the master artwork ratio');
-assert(landingStyles.includes('object-fit:fill'), 'banner halves must share the exact stage geometry');
+assert(landingStyles.includes('height:100svh'), 'banner must fill the viewport height');
+assert(landing.includes('class="choice-canvas"'), 'banner artwork must use a contained canvas');
+assert(landingStyles.includes('aspect-ratio:1672/941'), 'banner canvas must retain the artwork ratio');
+assert(landingStyles.includes('object-fit:contain'), 'banner artwork must remain fully visible without cropping');
+assert(landingStyles.includes('animation:welcome-fade .8s ease 4s forwards'), 'welcome popup must fade after four seconds');
 assert(landingStyles.includes('clip-path:polygon(0 0,56.65% 0,41.3% 100%,0 100%)'), 'luxury banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('clip-path:polygon(56.65% 0,100% 0,100% 100%,41.3% 100%)'), 'streetwear banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('border:1px solid rgba(197,154,94,.65)'), 'landing banner must retain its gold frame');
 assert(landingStyles.includes('transform:scale(1.025)'), 'banner hover zoom is missing');
-assert(landingStyles.includes('.landing-header{position:relative'), 'landing navigation must remain outside the banner flow');
+assert(!landing.includes('<header'), 'landing page must not render a navigation header');
+assert(!landingStyles.includes('.landing-header'), 'obsolete landing header styles must be removed');
 assert(landingStyles.includes('prefers-reduced-motion:reduce'), 'landing interaction must honor reduced motion');
 
 assert(luxuryProducts.length === 6, 'luxury must retain all six configured designs');
