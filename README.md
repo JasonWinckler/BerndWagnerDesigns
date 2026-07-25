@@ -62,3 +62,9 @@ Impressum und Datenschutzerklärung sind technische Vorlagen und müssen vor Liv
 ## Deployment
 
 Die Dateien können auf jedem statischen Hosting veröffentlicht werden. Für produktive SEO-Metadaten sollte `{{SITE_URL}}` in HTML und Konfiguration ersetzt werden. Optional können danach `robots.txt` und `sitemap.xml` mit der realen Ziel-URL ergänzt werden.
+
+## Auflösungsvarianten der Landingpage
+
+Die Startseite erkennt das Viewport-Format automatisch und kennzeichnet es als `desktop-low` (ab 1600 × 900), `desktop-high` (ab 2400 × 1300), `mobile` (Hochformat) oder `other-device`. Alle Varianten verwenden dieselben Inhalte und responsiven Styles. Sie sind zusätzlich direkt unter `/desktop-low/`, `/desktop-high/`, `/mobile/` und `/other-device/` aufrufbar, um sie unabhängig von der Monitorgröße zu prüfen.
+
+Das Logo des kurz eingeblendeten Willkommen-Popups kann in `upload/logo/` ausgetauscht werden; Hinweise zu Format und Dateiname stehen in der dortigen README.
