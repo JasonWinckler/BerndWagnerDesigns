@@ -45,6 +45,7 @@ assert(landingStyles.includes('transform: scale(1.025)'), 'banner hover zoom is 
 assert(!landing.includes('<header'), 'landing header must remain removed');
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) assert(landingStyles.includes(`html[data-layout="${profile}"]`), `${profile} layout styles are missing`);
 assert(landingApp.includes("height > width"), 'portrait viewports must select mobile');
+assert(!landingApp.includes('history.replaceState'), 'automatic layout detection must not rewrite the page URL');
 assert(landingApp.includes('5200'), 'welcome popup must be removed after its exclusive welcome sequence');
 assert(landingStyles.includes('prefers-reduced-motion: reduce'), 'landing interaction must honor reduced motion');
 
