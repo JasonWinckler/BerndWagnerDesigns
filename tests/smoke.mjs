@@ -29,7 +29,7 @@ assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is mis
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
 assert(existsSync(join(root, 'upload', 'README.md')), 'upload/README.md is missing');
-assert(landing.includes('Willkommen in der exklusiven Welt'), 'exclusive welcome message is missing');
+assert(landing.includes('<span>Willkommen bei</span> Bernd Wagner Designs'), 'structured welcome message is missing');
 assert(landing.includes('src="upload/BannerLinks.png"'), 'luxury banner image is missing');
 assert(landing.includes('src="upload/BannerRechts.png"'), 'streetwear banner image is missing');
 assert(landingStyles.includes('aspect-ratio:1672/941'), 'banner must retain the master artwork ratio');
@@ -37,7 +37,7 @@ assert(landingStyles.includes('object-fit:fill'), 'banner halves must share the 
 assert(landingStyles.includes('clip-path:polygon(0 0,56.65% 0,41.3% 100%,0 100%)'), 'luxury banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('clip-path:polygon(56.65% 0,100% 0,100% 100%,41.3% 100%)'), 'streetwear banner must use the transparent artwork diagonal');
 assert(landingStyles.includes('border:1px solid rgba(197,154,94,.65)'), 'landing banner must retain its gold frame');
-assert(landingStyles.includes('@keyframes choice-shine'), 'banner hover highlight animation is missing');
+assert(landingStyles.includes('transform:scale(1.025)'), 'banner hover zoom is missing');
 assert(landingStyles.includes('.landing-header{position:relative'), 'landing navigation must remain outside the banner flow');
 assert(landingStyles.includes('prefers-reduced-motion:reduce'), 'landing interaction must honor reduced motion');
 
