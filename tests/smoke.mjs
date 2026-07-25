@@ -53,12 +53,22 @@ assert(luxuryProducts.length === 6, 'luxury must retain all six configured desig
 assert(new Set(luxuryProducts.map(({ image }) => image)).size === 6, 'luxury images must be unique');
 for (const product of luxuryProducts) assert(existsSync(join(root, 'luxury', product.image)), `${product.id} references missing luxury image`);
 
-assert(streetwearProducts.length > 0, 'streetwear should retain the collection structure');
-assert(streetwearProducts.every(({ image, pendingUpload }) => !image && pendingUpload), 'streetwear designs must have no image uploads yet');
+assert(streetwearProducts.length === 3, 'streetwear must contain the bag, shirt and cap');
+assert(
+  JSON.stringify(streetwearProducts.map(({ name, image }) => [name, image])) === JSON.stringify([
+    ['Streetwear Rucksack', '../upload/streetwear/bags/StreetWear_Bag.png'],
+    ['Streetwear Hemd', '../upload/streetwear/oberteile/StreetWear_Shirt.png'],
+    ['Streetwear Cap', '../upload/streetwear/caps/StreetWear_Cap.png']
+  ]),
+  'streetwear products must reference the documented upload filenames'
+);
+assert(streetwearProducts.every(({ pendingUpload }) => pendingUpload), 'streetwear images must remain marked as pending upload');
 for (const collection of ['luxury', 'streetwear']) {
   assert(existsSync(join(root, 'upload', collection, 'README.md')), `shared upload/${collection} directory is missing`);
 }
-assert(existsSync(join(root, 'upload', 'streetwear', 'hosen')), 'shared streetwear upload directory is missing');
+assert(existsSync(join(root, 'upload', 'streetwear', 'oberteile', 'README.md')), 'streetwear tops upload instructions are missing');
+assert(existsSync(join(root, 'upload', 'streetwear', 'bags', 'README.md')), 'streetwear bags upload instructions are missing');
+assert(existsSync(join(root, 'upload', 'streetwear', 'caps', 'README.md')), 'streetwear caps upload instructions are missing');
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
   for (const collection of ['luxury', 'streetwear']) {
@@ -71,6 +81,11 @@ for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device'])
   const profileLanding = await readFile(join(root, profile, 'index.html'), 'utf8');
   assert(profileLanding.includes('href="luxury/"'), `${profile} landing must open its local luxury edition`);
   assert(profileLanding.includes('href="streetwear/"'), `${profile} landing must open its local streetwear edition`);
+}
+
+for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
+  const { products } = await import(`../${profile}/streetwear/js/config.js`);
+  assert(products.every(({ image }) => image.startsWith('../../upload/streetwear/')), `${profile} streetwear must use the shared upload folder`);
 }
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {

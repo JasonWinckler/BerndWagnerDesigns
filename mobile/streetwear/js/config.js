@@ -8,7 +8,7 @@ export const siteConfig = {
   form: { endpoint: '', method: 'POST', recipient: '{{EMAIL}}', serviceName: '{{FORMULAR_DIENST}}', privacyNote: 'Die Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.' }
 };
 export const products = [
-  { id:'street-01', category:'Hosen', name:'Streetwear Entwurf No. 01', alt:'Bild folgt.', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
-  { id:'street-02', category:'Hosen', name:'Streetwear Entwurf No. 02', alt:'Bild folgt.', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
-  { id:'street-03', category:'Hosen', name:'Streetwear Entwurf No. 03', alt:'Bild folgt.', status:'Auf Anfrage', isConcept:true, pendingUpload:true }
+  { id:'street-bag', category:'Accessoires', name:'Streetwear Rucksack', alt:'Streetwear-Rucksack von Bernd Wagner Designs', image:'../../upload/streetwear/bags/StreetWear_Bag.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
+  { id:'street-shirt', category:'Oberteile', name:'Streetwear Hemd', alt:'Streetwear-Hemd von Bernd Wagner Designs', image:'../../upload/streetwear/oberteile/StreetWear_Shirt.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true },
+  { id:'street-cap', category:'Accessoires', name:'Streetwear Cap', alt:'Streetwear-Cap von Bernd Wagner Designs', image:'../../upload/streetwear/caps/StreetWear_Cap.png', status:'Auf Anfrage', isConcept:true, pendingUpload:true }
 ];

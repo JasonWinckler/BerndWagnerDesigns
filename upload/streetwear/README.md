@@ -1,7 +1,19 @@
 # Gemeinsame Streetwear-Bilder
 
-Lege Streetwear-Produktbilder zentral in diesem Ordner ab, zum Beispiel unter
-`hosen/`. Alle Geräteversionen können dieselbe Datei aus diesem Verzeichnis
-verwenden; eine Kopie in den einzelnen Geräteordnern ist nicht erforderlich.
+Streetwear-Produktbilder werden zentral in diesem Ordner abgelegt. Alle
+Geräteversionen verwenden dieselben Dateien; Kopien in den einzelnen
+Geräteordnern sind nicht erforderlich.
 
-Neue Dateinamen müssen in den Produktkonfigurationen ergänzt werden.
+Die Streetwear Collection erwartet aktuell folgende Bilder:
+
+- [`bags/StreetWear_Bag.png`](bags/StreetWear_Bag.png) – Rucksack
+- [`oberteile/StreetWear_Shirt.png`](oberteile/StreetWear_Shirt.png) – Hemd
+- [`caps/StreetWear_Cap.png`](caps/StreetWear_Cap.png) – Cap
+
+Rucksäcke gehören in den Ordner [`bags/`](bags/), Caps in den Ordner
+[`caps/`](caps/). Weitere Hemden, Hoodies und sonstige Tops gehören in den
+Ordner [`oberteile/`](oberteile/). Hinweise zum Upload stehen in den jeweiligen
+READMEs.
+Bitte alle Dateinamen einschließlich Groß- und Kleinschreibung exakt übernehmen.
+Die Bilddateien werden separat hochgeladen und nicht mit dieser Änderung
+eingecheckt.
