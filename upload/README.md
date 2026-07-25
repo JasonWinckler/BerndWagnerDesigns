@@ -1,12 +1,9 @@
 # Upload-Bilder
 
-Lege hier die finalen Designvisualisierungen ab. Die Website nutzt aktuell genau diese Dateinamen:
+Die Website nutzt die tatsächlich vorhandenen PNG-Dateien mit ihren unveränderten Dateinamen:
 
-- `handtaschen/handtasche-01.svg`
-- `handtaschen/handtasche-02.svg`
-- `handtaschen/handtasche-03.svg`
-- `hosen/hose-01.svg`
-- `hosen/hose-02.svg`
-- `hosen/hose-03.svg`
+- `handtaschen/58134.png`
+- `handtaschen/58135.png`
+- `handtaschen/58136.png`
 
-Die Dateien können durch echte exportierte Motive ersetzt werden. Bitte die Dateinamen beibehalten, damit keine Codeänderung nötig ist. SVG, WebP, PNG oder JPG sind technisch möglich; bei abweichender Endung müssen die Pfade in `js/config.js` und beim Hero-Bild in `index.html` angepasst werden.
+Im Verzeichnis `hosen/` ist derzeit keine PNG-Datei vorhanden. Neue PNGs werden nicht automatisch eingebunden: Ihre exakten relativen Pfade müssen in `js/config.js` ergänzt werden; bei einem neuen Hero-Motiv ist zusätzlich `index.html` anzupassen.
