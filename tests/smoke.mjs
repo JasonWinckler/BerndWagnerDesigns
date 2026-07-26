@@ -57,7 +57,7 @@ for (const product of luxuryProducts) assert(existsSync(join(root, 'luxury', pro
 assert(streetwearProducts.length === 4, 'streetwear must contain the trousers, bag, shirt and cap');
 assert(
   JSON.stringify(streetwearProducts.map(({ name, image }) => [name, image])) === JSON.stringify([
-    ['Streetwear Hose', '../upload/streetwear/hosen/StreetWear_Trousers.png'],
+    ['Streetwear Hose', '../upload/streetwear/hosen/StreetWear_Trouser.png'],
     ['Streetwear Rucksack', '../upload/streetwear/bags/StreetWear_Bag.png'],
     ['Streetwear Hemd', '../upload/streetwear/oberteile/StreetWear_Shirt.png'],
     ['Streetwear Cap', '../upload/streetwear/caps/StreetWear_Cap.png']
@@ -76,6 +76,8 @@ for (const [collection, filename] of [['streetwear', 'streetwear_collection.png'
   assert(existsSync(join(preview, 'README.md')), `${collection} collection preview upload instructions are missing`);
   const html = await readFile(join(root, collection, 'index.html'), 'utf8');
   assert(html.includes(`../upload/${collection}/collection-preview/${filename}`), `${collection} hero must use its collection preview image`);
+  const styles = await readFile(join(root, collection, 'css/styles.css'), 'utf8');
+  assert(styles.includes('.hero-art img{object-fit:contain'), `${collection} hero preview must fit inside its frame`);
 }
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
