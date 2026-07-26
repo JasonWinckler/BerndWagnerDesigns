@@ -4,6 +4,8 @@ Alle Luxury-Seiten verwenden die Bilder aus diesem zentralen Ordner. Lade neue
 Dateien je nach Kategorie unter `handtaschen/` oder `hosen/` hoch. Die vorhandenen
 Konfigurationen erwarten aktuell diese Dateien:
 
+- `collection-preview/luxury_collection.png` – erstes Kollektionsbild
+
 - `handtaschen/58134.png`
 - `handtaschen/58135.png`
 - `handtaschen/58136.png`

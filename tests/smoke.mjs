@@ -7,6 +7,7 @@ import { products as streetwearProducts } from '../streetwear/js/config.js';
 const pages = ['index.html', 'desktop-low/index.html', 'desktop-high/index.html', 'mobile/index.html', 'other-device/index.html', 'impressum.html', 'datenschutz.html', 'luxury/index.html', 'luxury/impressum.html', 'luxury/datenschutz.html', 'streetwear/index.html', 'streetwear/impressum.html', 'streetwear/datenschutz.html'];
 const root = process.cwd();
 const refPattern = /(?:href|src)="([^"]+)"/g;
+const pendingImageNames = new Set(['streetwear_collection.png', 'luxury_collection.png']);
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 
 for (const page of pages) {
@@ -16,7 +17,7 @@ for (const page of pages) {
   for (const [, reference] of html.matchAll(refPattern)) {
     if (/^(#|mailto:|tel:|https?:|\{\{)/.test(reference)) continue;
     const cleanReference = reference.split('#')[0].split('?')[0];
-    assert(existsSync(join(root, dirname(page), cleanReference)), `${page} references missing file: ${reference}`);
+    assert(existsSync(join(root, dirname(page), cleanReference)) || pendingImageNames.has(cleanReference.split('/').at(-1)), `${page} references missing file: ${reference}`);
   }
 }
 
@@ -53,9 +54,10 @@ assert(luxuryProducts.length === 6, 'luxury must retain all six configured desig
 assert(new Set(luxuryProducts.map(({ image }) => image)).size === 6, 'luxury images must be unique');
 for (const product of luxuryProducts) assert(existsSync(join(root, 'luxury', product.image)), `${product.id} references missing luxury image`);
 
-assert(streetwearProducts.length === 3, 'streetwear must contain the bag, shirt and cap');
+assert(streetwearProducts.length === 4, 'streetwear must contain the trousers, bag, shirt and cap');
 assert(
   JSON.stringify(streetwearProducts.map(({ name, image }) => [name, image])) === JSON.stringify([
+    ['Streetwear Hose', '../upload/streetwear/hosen/StreetWear_Trousers.png'],
     ['Streetwear Rucksack', '../upload/streetwear/bags/StreetWear_Bag.png'],
     ['Streetwear Hemd', '../upload/streetwear/oberteile/StreetWear_Shirt.png'],
     ['Streetwear Cap', '../upload/streetwear/caps/StreetWear_Cap.png']
@@ -69,6 +71,12 @@ for (const collection of ['luxury', 'streetwear']) {
 assert(existsSync(join(root, 'upload', 'streetwear', 'oberteile', 'README.md')), 'streetwear tops upload instructions are missing');
 assert(existsSync(join(root, 'upload', 'streetwear', 'bags', 'README.md')), 'streetwear bags upload instructions are missing');
 assert(existsSync(join(root, 'upload', 'streetwear', 'caps', 'README.md')), 'streetwear caps upload instructions are missing');
+for (const [collection, filename] of [['streetwear', 'streetwear_collection.png'], ['luxury', 'luxury_collection.png']]) {
+  const preview = join(root, 'upload', collection, 'collection-preview');
+  assert(existsSync(join(preview, 'README.md')), `${collection} collection preview upload instructions are missing`);
+  const html = await readFile(join(root, collection, 'index.html'), 'utf8');
+  assert(html.includes(`../upload/${collection}/collection-preview/${filename}`), `${collection} hero must use its collection preview image`);
+}
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
   for (const collection of ['luxury', 'streetwear']) {
@@ -96,4 +104,4 @@ for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device'])
   }
 }
 
-console.log(`Static smoke checks passed for ${pages.length} pages, ${luxuryProducts.length} luxury designs and ${streetwearProducts.length} streetwear placeholders.`);
+console.log(`Static smoke checks passed for ${pages.length} pages, ${luxuryProducts.length} luxury designs and ${streetwearProducts.length} streetwear designs.`);
