@@ -75,3 +75,11 @@ p{margin-block:.65rem 1.15rem}h3{font-size:clamp(1.35rem,2vw,2rem);line-height:1
 .set-item figcaption{display:grid;gap:.25rem;padding:1rem 1.25rem}.set-item figcaption span{color:var(--copper);font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.set-item figcaption strong{font:400 clamp(1.25rem,2vw,1.8rem)/1.2 var(--serif)}
 .set-inquiry{justify-self:start;margin-top:.5rem;border:0;border-bottom:1px solid var(--copper);padding:.35rem 0;background:none;color:inherit;font-weight:700;cursor:pointer}
 @media(max-width:600px){.site-header{padding-inline:1rem}.site-header .brand{width:42px;flex:0 0 42px}.header-actions{min-width:0}.language-toggle{font-size:.92rem}.collection-hero{min-height:42svh;padding:6.5rem 1.25rem 3rem}.collection-hero h1{font-size:clamp(2.65rem,14vw,4.4rem);line-height:.95}.section{padding-inline:1.15rem}.set-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}.set-item{border-radius:.8rem}.set-item img{height:58vw}.set-item figcaption{padding:.75rem;gap:.2rem}.set-item figcaption strong{font-size:1rem}.set-item figcaption span{font-size:.62rem;letter-spacing:.06em}.set-inquiry{font-size:.78rem;text-align:left}.collection>h2{font-size:clamp(2.25rem,11vw,3.4rem)}.usp{gap:.4rem}.usp article{padding:1.25rem 0}.process li{min-height:auto;padding-block:3.2rem}.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+
+/* Legibility pass: clear, wide display type instead of condensed italic lettering. */
+:root{--serif:'Arial Black',Arial,Helvetica,sans-serif}
+.collection-hero h1,.section h2,.usp h2,.product-card h3,.process li strong{font-family:var(--serif);font-style:normal;font-weight:900;letter-spacing:-.025em;line-height:1.04}
+.collection-hero h1{letter-spacing:-.035em;line-height:.98}
+.eyebrow{font-style:normal;font-weight:800;letter-spacing:.13em}
+.product-card h3{line-height:1.1}
+@media(max-width:600px){.collection-hero h1,.section h2,.usp h2,.product-card h3,.process li strong{letter-spacing:-.015em}.collection-hero h1{font-size:clamp(2.5rem,12vw,4rem);line-height:1}}

@@ -80,6 +80,14 @@ for (const [collection, title, setCount] of [['streetwear', 'Streetwear Collecti
   assert(app.includes('class="set-grid"'), `${collection} must render products as sets`);
   assert(app.includes(`collectionSets.length>1`), `${collection} carousel must support set-level navigation`);
   assert(!existsSync(join(root, 'upload', collection, 'collection-preview')), `${collection} preview folder must be removed`);
+  const styles = await readFile(join(root, collection, 'css/styles.css'), 'utf8');
+  if (collection === 'streetwear') {
+    assert(styles.includes("--serif:'Arial Black',Arial,Helvetica,sans-serif"), 'streetwear must use its readable wide display type');
+    assert(styles.includes('.collection-hero h1,.section h2,.usp h2,.product-card h3,.process li strong{font-family:var(--serif);font-style:normal'), 'streetwear headings must remain upright and legible');
+  } else {
+    assert(styles.includes('/* Couture-inspired collection title banner. */'), 'luxury collection title must retain its exclusive banner treatment');
+    assert(styles.includes('content:"ATELIER · BESPOKE"'), 'luxury banner must retain its atelier signature');
+  }
 }
 
 
