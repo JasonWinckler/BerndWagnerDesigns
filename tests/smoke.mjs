@@ -7,7 +7,7 @@ import { products as streetwearProducts } from '../streetwear/js/config.js';
 const pages = ['index.html', 'desktop-low/index.html', 'desktop-high/index.html', 'mobile/index.html', 'other-device/index.html', 'impressum.html', 'datenschutz.html', 'luxury/index.html', 'luxury/impressum.html', 'luxury/datenschutz.html', 'streetwear/index.html', 'streetwear/impressum.html', 'streetwear/datenschutz.html'];
 const root = process.cwd();
 const refPattern = /(?:href|src)="([^"]+)"/g;
-const pendingImageNames = new Set(['streetwear_collection.png', 'luxury_collection.png']);
+const pendingImageNames = new Set();
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 
 for (const page of pages) {
@@ -71,14 +71,17 @@ for (const collection of ['luxury', 'streetwear']) {
 assert(existsSync(join(root, 'upload', 'streetwear', 'oberteile', 'README.md')), 'streetwear tops upload instructions are missing');
 assert(existsSync(join(root, 'upload', 'streetwear', 'bags', 'README.md')), 'streetwear bags upload instructions are missing');
 assert(existsSync(join(root, 'upload', 'streetwear', 'caps', 'README.md')), 'streetwear caps upload instructions are missing');
-for (const [collection, filename] of [['streetwear', 'streetwear_collection.png'], ['luxury', 'luxury_collection.png']]) {
-  const preview = join(root, 'upload', collection, 'collection-preview');
-  assert(existsSync(join(preview, 'README.md')), `${collection} collection preview upload instructions are missing`);
+for (const [collection, title, setCount] of [['streetwear', 'Streetwear Collection', 1], ['luxury', 'Luxurious Collection', 3]]) {
   const html = await readFile(join(root, collection, 'index.html'), 'utf8');
-  assert(html.includes(`../upload/${collection}/collection-preview/${filename}`), `${collection} hero must use its collection preview image`);
-  const styles = await readFile(join(root, collection, 'css/styles.css'), 'utf8');
-  assert(styles.includes('.hero-art img{object-fit:contain'), `${collection} hero preview must fit inside its frame`);
+  const app = await readFile(join(root, collection, 'js/app.js'), 'utf8');
+  assert(html.includes(`<section class="hero collection-hero"><h1 class="reveal">${title}</h1>`), `${collection} hero must contain only its permanent collection title`);
+  assert(html.includes('<h2>Our Collection Sets</h2>'), `${collection} set gallery title is missing`);
+  assert(!html.includes('collection-preview'), `${collection} must not reference a collection preview`);
+  assert(app.includes('class="set-grid"'), `${collection} must render products as sets`);
+  assert(app.includes(`collectionSets.length>1`), `${collection} carousel must support set-level navigation`);
+  assert(!existsSync(join(root, 'upload', collection, 'collection-preview')), `${collection} preview folder must be removed`);
 }
+
 
 for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device']) {
   for (const collection of ['luxury', 'streetwear']) {
