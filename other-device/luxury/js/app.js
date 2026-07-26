@@ -4,6 +4,16 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 $('[data-year]').textContent=new Date().getFullYear(); $('[data-contact]').textContent=`Kontakt: ${siteConfig.contactEmail} · ${siteConfig.contactPhone}`;
 $$('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12}).observe(el));
 
+const processSteps=$$('.process li');
+if(processSteps.length){
+ const processObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  processSteps.forEach(step=>step.classList.remove('active'));
+  entry.target.classList.add('seen','active');
+ }),{rootMargin:'-38% 0px -38% 0px',threshold:.05});
+ processSteps.forEach(step=>processObserver.observe(step));
+}
+
 const design=$('[name=design]'); products.forEach(p=>design.add(new Option(`${p.name} · ${p.category}`,p.id))); let filtered=[...products], index=0, timer, interacting=false; const slides=$('[data-slides]'), dots=$('[data-dots]'), count=$('[data-count]'), live=$('[data-live]');
 function render(){slides.innerHTML=filtered.map((p,i)=>`<article class="slide ${i===index?'active':''}" aria-hidden="${i!==index}"><div class="product-card"><figure><img src="${p.image}" alt="${p.alt}" width="1200" height="1500" ${i?'loading="lazy"':'fetchpriority="high"'}></figure><div><span class="badge">${p.isConcept?'Designvisualisierung':'Entwurf'}</span><p class="eyebrow">${p.category}</p><h3>${p.name}</h3><p>${p.status}. Fertigung, Preis und Details werden persönlich abgestimmt.</p><button class="btn" data-product="${p.id}">Dieses Design anfragen</button></div></div></article>`).join('');dots.innerHTML=filtered.map((_,i)=>`<button class="${i===index?'active':''}" aria-label="Design ${i+1} anzeigen" data-dot="${i}"></button>`).join('');count.textContent=`${index+1} / ${filtered.length}`}
 function go(n,manual=false){index=(n+filtered.length)%filtered.length;render(); if(manual){live.textContent=`Design ${index+1} von ${filtered.length}`; restart()}} function restart(){clearInterval(timer); if(!reduced.matches&&!interacting&&!document.hidden)timer=setInterval(()=>go(index+1),6000)} render(); restart();
