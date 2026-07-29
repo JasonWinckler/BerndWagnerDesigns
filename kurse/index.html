@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d0c0b">
+  <title>Private Atelier Sessions · Bernd Wagner Designs</title>
+  <meta name="description" content="Lernen Sie Mode, Schnitt und Nähkunst im persönlichen Atelier-Termin mit Bernd Wagner kennen. Wunschtermin unverbindlich anfragen.">
+  <link rel="icon" href="../assets/logo-marke-bw.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Bernd Wagner Designs – Startseite">
+      <img src="../assets/logo-bernd-wagner-designs.svg" alt="Bernd Wagner Designs" width="260" height="60">
+    </a>
+    <a class="back-link" href="../index.html"><span aria-hidden="true">←</span> Zurück zu den Kollektionen</a>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Private Atelier Sessions · Persönlich</p>
+        <h1>Von der Idee zur eigenen Handschrift.</h1>
+        <p class="hero-intro">Erleben Sie Mode dort, wo sie entsteht. In einer persönlichen Session vermittelt Bernd Wagner künstlerisches Denken, Schnitt und Nähhandwerk – individuell auf Ihr Niveau und Ihre Vision abgestimmt.</p>
+        <a class="text-link" href="#termin">Wunschtermin auswählen <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="atelier-object" aria-hidden="true">
+        <span class="atelier-object__orbit"></span>
+        <span class="atelier-object__line atelier-object__line--one"></span>
+        <span class="atelier-object__line atelier-object__line--two"></span>
+        <div class="atelier-object__card">
+          <span>Private Edition</span>
+          <strong>01:01</strong>
+          <small>Idee · Schnitt · Handwerk</small>
+        </div>
+      </div>
+      <p class="hero-note">Keine Vorkenntnisse erforderlich <span></span> Persönlich abgestimmt <span></span> Unverbindliche Anfrage</p>
+    </section>
+
+    <section class="session-principles" aria-labelledby="session-principles-title">
+      <div class="section-heading">
+        <p class="eyebrow">Was Sie erwartet</p>
+        <h2 id="session-principles-title">Handwerk wird persönlich.</h2>
+      </div>
+      <div class="principle-grid">
+        <article>
+          <span>01</span>
+          <h3>Künstlerischer Dialog</h3>
+          <p>Formen lesen, Ideen schärfen und eine eigenständige gestalterische Sprache entwickeln.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Schnitt & Konstruktion</h3>
+          <p>Proportion, Material und Aufbau verstehen – nachvollziehbar am eigenen Vorhaben.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Nähtechnik & Finish</h3>
+          <p>Ausgewählte Verarbeitungstechniken kennenlernen und Details bewusst vollenden.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="booking" id="termin" aria-labelledby="booking-title">
+      <div class="booking-intro">
+        <p class="eyebrow">Termin anfragen</p>
+        <h2 id="booking-title">Ihr Platz im Atelier.</h2>
+        <p>Wählen Sie Ihren bevorzugten Termin und erzählen Sie kurz, was Sie lernen oder verwirklichen möchten. Bernd Wagner meldet sich persönlich mit Verfügbarkeit und Details zurück.</p>
+        <div class="booking-signature">
+          <span>BW</span>
+          <p><strong>Persönlich kuratiert</strong>Jede Anfrage wird individuell gelesen und beantwortet.</p>
+        </div>
+      </div>
+
+      <form class="booking-form" data-booking-form novalidate>
+        <fieldset class="form-section">
+          <legend><span>01</span> Wunschtermin</legend>
+          <div class="calendar" data-calendar>
+            <div class="calendar-header">
+              <button type="button" data-calendar-prev aria-label="Vorheriger Monat">←</button>
+              <p data-calendar-label aria-live="polite"></p>
+              <button type="button" data-calendar-next aria-label="Nächster Monat">→</button>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true">
+              <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+            </div>
+            <div class="calendar-grid" data-calendar-grid role="grid" aria-label="Wunschtermin wählen"></div>
+          </div>
+          <input type="hidden" name="date">
+          <p class="selection" data-selected-date>Bitte wählen Sie Ihren Wunschtag.</p>
+          <span class="error" id="error-date"></span>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend><span>02</span> Wunschuhrzeit</legend>
+          <div class="time-slots" data-time-slots></div>
+          <span class="error" id="error-time"></span>
+          <p class="field-note">Die endgültige Uhrzeit wird nach Prüfung der Verfügbarkeit bestätigt.</p>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend><span>03</span> Ihre Kontaktdaten</legend>
+          <div class="form-grid">
+            <label>Vor- und Nachname *
+              <input name="name" required autocomplete="name" aria-describedby="error-name">
+              <span class="error" id="error-name"></span>
+            </label>
+            <label>E-Mail-Adresse *
+              <input type="email" name="email" required autocomplete="email" aria-describedby="error-email">
+              <span class="error" id="error-email"></span>
+            </label>
+            <label>Telefonnummer
+              <input type="tel" name="phone" autocomplete="tel">
+            </label>
+            <label>Erfahrungsniveau
+              <select name="experience">
+                <option>Keine Vorkenntnisse</option>
+                <option>Erste Erfahrungen</option>
+                <option>Fortgeschritten</option>
+                <option>Professionell</option>
+              </select>
+            </label>
+            <label class="full">Worauf möchten Sie sich konzentrieren?
+              <select name="focus">
+                <option>Gemeinsam herausfinden</option>
+                <option>Design & künstlerische Idee</option>
+                <option>Schnitt & Konstruktion</option>
+                <option>Nähtechnik & Verarbeitung</option>
+                <option>Eigenes Projekt besprechen</option>
+              </select>
+            </label>
+            <label class="full">Ihre Nachricht *
+              <textarea name="message" required placeholder="Was möchten Sie lernen, ausprobieren oder mitbringen?" aria-describedby="error-message"></textarea>
+              <span class="error" id="error-message"></span>
+            </label>
+            <label class="consent full">
+              <input type="checkbox" name="privacy" required aria-describedby="error-privacy">
+              <span>Ich habe die <a href="../datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Terminanfrage zu. *</span>
+            </label>
+            <span class="error full" id="error-privacy"></span>
+            <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+        </fieldset>
+
+        <div class="request-summary">
+          <p class="eyebrow">Ihre Auswahl</p>
+          <output data-summary>Termin und Uhrzeit noch offen</output>
+        </div>
+        <button class="submit-button" type="submit" data-submit>
+          <span>Termin unverbindlich anfragen</span><span aria-hidden="true">↗</span>
+        </button>
+        <button class="copy-button" type="button" data-copy>Anfrage als Text kopieren</button>
+        <p class="form-status" data-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-brand" href="../index.html"><img src="../assets/logo-bernd-wagner-designs.svg" alt="Bernd Wagner Designs" width="260" height="60"></a>
+    <p>Private Atelier Sessions für Mode, Schnitt und Nähkunst.</p>
+    <nav><a href="../index.html">Kollektionen</a><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></nav>
+    <small>© <span data-year></span> Bernd Wagner Designs</small>
+  </footer>
+</body>
+</html>
