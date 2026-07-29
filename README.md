@@ -1,6 +1,6 @@
 # Bernd Wagner Designs
 
-Statische, responsive Storefront-Landingpage in deutscher Sprache für exklusive Handtaschen- und Bespoke-Hosen-Anfragen. Kein Build-Schritt, keine externen Fonts, kein Tracking und kein Checkout.
+Statische, responsive Storefront-Landingpage in deutscher Sprache für exklusive Handtaschen-, Bespoke-Hosen- und persönliche Atelier-Anfragen. Kein Build-Schritt, keine externen Fonts, kein Tracking und kein Checkout.
 
 ## Lokale Vorschau
 
@@ -13,6 +13,7 @@ Danach `http://localhost:4173/` öffnen.
 ## Struktur
 
 - `index.html` – Landingpage mit Hero, Kollektion, Bespoke, Ablauf, Atelier, FAQ und Anfrageformular
+- `kurse/` – responsive Seite für Private Atelier Sessions mit Kalender, Wunschuhrzeit und Terminanfrage
 - `impressum.html` – Rechtstext-Template mit Platzhaltern
 - `datenschutz.html` – Datenschutz-Template für die tatsächlich verwendeten Vorgänge
 - `css/styles.css` – Designsystem, Responsive Layout, Fokus- und Reduced-Motion-Regeln
@@ -50,6 +51,15 @@ In `js/config.js` müssen diese Werte ersetzt beziehungsweise gesetzt werden:
 - `form.privacyNote`
 
 Es dürfen keine API-Schlüssel oder Secrets im Frontend hinterlegt werden. Wenn kein Endpoint konfiguriert ist, zeigt die Seite keinen Scheinerfolg, sondern E-Mail-Fallback und Kopierfunktion.
+
+Für die Atelier-Terminseite werden Empfänger und optionaler Formular-Endpunkt zentral in `kurse/js/config.js` gepflegt:
+
+- `recipientEmail` – Zieladresse für den vorbereiteten E-Mail-Versand
+- `form.endpoint` – optionaler Formular-Endpunkt für direkten Versand
+- `form.method`
+- `minimumLeadDays`, `maximumMonthsAhead` und `timeSlots` – Kalender- und Uhrzeitvorgaben
+
+Ohne Endpunkt öffnet die Seite nach gültiger Eingabe das lokale E-Mail-Programm mit einer vollständig vorbereiteten Anfrage. Solange auch `recipientEmail` noch den Platzhalter enthält, steht die Kopierfunktion bereit und die Seite meldet transparent, dass noch keine Empfängeradresse konfiguriert wurde.
 
 ## Rechtliche Platzhalter vor Veröffentlichung
 
