@@ -13,7 +13,7 @@ Danach `http://localhost:4173/` öffnen.
 ## Struktur
 
 - `index.html` – Landingpage mit Hero, Kollektion, Bespoke, Ablauf, Atelier, FAQ und Anfrageformular
-- `kurse/` – responsive Seite für Private Atelier Sessions mit Kalender, Wunschuhrzeit und Terminanfrage
+- `kurse/` – eigenständige responsive Landingpage für Private Atelier Sessions mit Inhalten, Ablauf, FAQ, Kalender, Wunschuhrzeit und Terminanfrage
 - `impressum.html` – Rechtstext-Template mit Platzhaltern
 - `datenschutz.html` – Datenschutz-Template für die tatsächlich verwendeten Vorgänge
 - `css/styles.css` – Designsystem, Responsive Layout, Fokus- und Reduced-Motion-Regeln

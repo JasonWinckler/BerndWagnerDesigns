@@ -1,5 +1,7 @@
 import { bookingConfig } from './config.js';
 
+document.documentElement.classList.add('js');
+
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const form = $('[data-booking-form]');
@@ -13,6 +15,20 @@ const dateFormatter = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: '
 const monthFormatter = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' });
 
 $('[data-year]').textContent = new Date().getFullYear();
+
+const revealItems = $$('[data-reveal]');
+if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+  revealItems.forEach((item) => item.classList.add('visible'));
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+  revealItems.forEach((item) => revealObserver.observe(item));
+}
 
 function startOfDay(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
