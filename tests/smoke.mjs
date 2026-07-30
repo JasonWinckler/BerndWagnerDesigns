@@ -26,9 +26,8 @@ const landingApp = await readFile(join(root, 'js/app.js'), 'utf8');
 const landingStyles = await readFile(join(root, 'css/styles.css'), 'utf8');
 assert(landing.includes('href="luxury/"'), 'landing page must link to luxury');
 assert(landing.includes('href="streetwear/"'), 'landing page must link to streetwear');
-assert(landing.includes('href="kurse/"'), 'landing page must link to private atelier sessions');
-assert(landing.includes('Private Atelier-Session anfragen'), 'landing atelier CTA is missing');
-assert(landing.includes('class="atelier-cta"'), 'landing atelier CTA must hover over the split screen');
+assert(!landing.includes('href="kurse/"'), 'landing page must not render the removed atelier CTA');
+assert(!landing.includes('class="atelier-cta"'), 'landing atelier CTA must remain removed');
 assert(landing.includes('Luxurious Collection entdecken'), 'luxury choice is missing');
 assert(landing.includes('Streetwear Collection entdecken'), 'streetwear choice is missing');
 assert(landing.includes("url('../upload/BannerLinks.png')") === false, 'banner styling belongs in the stylesheet');
@@ -105,7 +104,7 @@ for (const profile of ['desktop-low', 'desktop-high', 'mobile', 'other-device'])
   const profileLanding = await readFile(join(root, profile, 'index.html'), 'utf8');
   assert(profileLanding.includes('href="luxury/"'), `${profile} landing must open its local luxury edition`);
   assert(profileLanding.includes('href="streetwear/"'), `${profile} landing must open its local streetwear edition`);
-  assert(profileLanding.includes('href="../kurse/"'), `${profile} landing must link to the responsive atelier session page`);
+  assert(!profileLanding.includes('href="../kurse/"'), `${profile} landing must not render the removed atelier CTA`);
 }
 
 const bookingPage = await readFile(join(root, 'kurse', 'index.html'), 'utf8');
@@ -115,6 +114,9 @@ assert(bookingPage.includes('data-calendar-grid'), 'atelier session page must in
 assert(bookingPage.includes('name="time"') === false, 'atelier time slots must be rendered from the central configuration');
 assert(bookingPage.includes('data-time-slots'), 'atelier session page must include configurable time slots');
 assert(bookingPage.includes('Termin unverbindlich anfragen'), 'atelier session submit CTA is missing');
+for (const section of ['konzept', 'inhalte', 'ablauf', 'niveau', 'termin', 'faq']) assert(bookingPage.includes(`id="${section}"`), `atelier landing section ${section} is missing`);
+assert(bookingPage.includes('class="site-nav"'), 'atelier landing page must include its own navigation');
+assert(bookingPage.includes('data-reveal'), 'atelier landing page must include editorial reveal moments');
 for (const field of ['name', 'email', 'message', 'privacy']) assert(bookingPage.includes(`name="${field}"`), `atelier form field ${field} is missing`);
 assert(bookingApp.includes('mailto:'), 'atelier request must provide an email fallback');
 assert(bookingApp.includes('navigator.clipboard.writeText'), 'atelier request must provide a copy fallback');
